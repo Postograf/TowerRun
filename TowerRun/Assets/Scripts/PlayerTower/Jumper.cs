@@ -10,6 +10,17 @@ public class Jumper : MonoBehaviour
     private Rigidbody _rigidbody;
     private bool _isGrounded;
 
+    public float JumpForce
+    {
+        get => _jumpForce;
+        set => _jumpForce = value;
+    }
+
+    public void BoostJump(float boost) 
+    { 
+        _jumpForce *= boost; 
+    }
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();

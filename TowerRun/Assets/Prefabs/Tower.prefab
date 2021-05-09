@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3178148107048943327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3178148107048943329}
+  - component: {fileID: 3178148107048943326}
+  m_Layer: 0
+  m_Name: Tower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3178148107048943329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3178148107048943327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3178148107048943326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3178148107048943327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62bc025fad986d8458807a8e7bc41113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _humanPrefabs:
+  - {fileID: 3169978902654812555, guid: 0863f4e3322963241b1813f9a91530c4, type: 3}
+  - {fileID: 7417495507984926120, guid: dbd0b06061927e84d8fd60ff45829112, type: 3}
+  - {fileID: 906427927236568098, guid: a37b902f5f29bb643b9e7009d34b3cc1, type: 3}
+  - {fileID: 1237511534449910140, guid: 16e34443100677d44952e889a1f2c296, type: 3}
+  - {fileID: 7141192496366695720, guid: 8b2179fcd99cde14cb0ec91e57d4fabe, type: 3}
+  - {fileID: 538506871416997634, guid: 29a45b15cd13aa540a088bc1ad8f9916, type: 3}
+  - {fileID: 6845218554073572077, guid: fcaed878512ae8a42976db64825eba33, type: 3}
+  - {fileID: 6663651270049111734, guid: 6cf8c46892bc2dc418c3c377882d6d0c, type: 3}
+  - {fileID: 6483671024479977344, guid: 456e116c667b87845919ecf99deffd91, type: 3}
+  _humanInTowerRange: {x: 2, y: 5}

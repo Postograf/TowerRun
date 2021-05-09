@@ -13,6 +13,8 @@ public class PathFollower : MonoBehaviour
     private Rigidbody _rigidbody;
     private float _distanceTraveled;
 
+    public float Speed => _speed;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
