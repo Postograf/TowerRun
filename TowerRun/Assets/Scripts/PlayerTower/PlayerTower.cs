@@ -10,6 +10,7 @@ public class PlayerTower : MonoBehaviour
     [SerializeField] private Human _startHuman;
     [SerializeField] private Transform _distanceCheker;
     [SerializeField] private float _fixationMaxDistantion;
+    [SerializeField] private Vector3 _scatterForce;
 
     public event UnityAction<int> TowerChanged;
 
@@ -24,14 +25,19 @@ public class PlayerTower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Human human))
+        if(other.TryGetComponent(out Human human) && !_humans.Contains(human))
         {
             var tower = human.GetComponentInParent<Tower>();
-            var takedHumans = tower.TakeHumans(_distanceCheker, _fixationMaxDistantion);
 
-            if(takedHumans.Length > 0)
+            if (tower != null)
             {
-                AddHumans(takedHumans);
+                var takedHumans = tower.TakeHumans(_distanceCheker, _fixationMaxDistantion);
+
+                if (takedHumans.Length > 0)
+                {
+                    AddHumans(takedHumans);
+                }
+                
                 tower.Break();
             }
         }
@@ -50,7 +56,7 @@ public class PlayerTower : MonoBehaviour
     private void AddHumans(params Human[] humans)
     {
         if(_humans.Count > 0)
-            _humans[0].Stop();
+            _humans[0].StartRandomAnimation();
 
         transform.position = humans[0].transform.position;
 
@@ -72,8 +78,10 @@ public class PlayerTower : MonoBehaviour
 
     private void RemoveHumans(int count)
     {
-        foreach (var collisionedHuman in _humans.Take(count))
-            Destroy(collisionedHuman.gameObject);
+        if(_humans.Count <= count)
+            Destroy(gameObject);
+
+        ScatterHumans(_humans.Take(count));
 
         _humans.RemoveRange(0, count);
 
@@ -93,5 +101,27 @@ public class PlayerTower : MonoBehaviour
         human.transform.parent = transform;
         human.transform.localPosition = new Vector3(0, human.transform.localPosition.y, 0);
         human.transform.localRotation = Quaternion.identity;
+    }
+
+    private void ScatterHumans(IEnumerable<Human> humans)
+    {
+        foreach (var human in humans)
+        {
+            human.transform.parent = null;
+
+            human.GetComponent<Collider>().isTrigger = true;
+            var rigidbody = human.GetComponent<Rigidbody>();
+            rigidbody.isKinematic = false;
+
+            var multiplierRight = Mathf.Pow(-1, Random.Range(0, 2));
+            var forceRight = human.transform.right * multiplierRight;
+            
+            var multiplierForward = -1 * Random.Range(-1, 2);
+            var forceForward = human.transform.forward * multiplierForward;
+
+            var force = forceRight + forceForward + _scatterForce;
+
+            rigidbody.AddForce(force, ForceMode.Impulse);
+        }
     }
 }

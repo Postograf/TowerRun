@@ -20,6 +20,9 @@ public class TowerCreator : MonoBehaviour
         {
             var humanPrefab = _humanPrefabs[Random.Range(0, _humanPrefabs.Length)];
             var human = Instantiate(humanPrefab, Vector3.zero, Quaternion.identity);
+
+            human.StartRandomAnimation();
+
             tower.PushHuman(human);
         }
 
